@@ -488,18 +488,6 @@
                 errorMessage.style.display = 'none';
             }
 
-            // --- NEW: Stop the lighting animation on the button text after clicking ---
-            if (buttonSpan) { // Check if the span element exists
-                 // Set the animation style to 'none' to stop the animation
-                 buttonSpan.style.animation = 'none';
-                 // Optionally, set a static text-shadow if you want it to have a fixed look after stopping
-                 // For example, revert to a subtle shadow or a static glow
-                 buttonSpan.style.textShadow = '1px 1px 2px rgba(0,0,0,0.3)'; // Revert to the base subtle shadow
-                 // Or use a static glow: buttonSpan.style.textShadow = '0 0 10px #FFFFFF';
-            }
-            // --- END NEW ---
-
-
             // धार्मिक अंदाज़ में शुभकामना संदेश
             const message =
 `*${senderName}* की तरफ से,
@@ -512,4 +500,24 @@ Deepawali के पावन पर्व पर,
 आपके जीवन में सुख, समृद्धि, स्वास्थ्य और
 अपरंपार खुशियाँ आएं।
 
-यह दीवाली आपक
+यह दीवाली आपके लिए मंगलमय हो।
+
+*आपको और आपके पूरे परिवार को दीपावली की हार्दिक शुभकामनाएँ!* ✨
+
+#HappyDiwali #Diwali2023`;
+
+
+            // संदेश को URL में भेजने लायक फॉर्मेट में एन्कोड करें
+            const encodedMessage = encodeURIComponent(message);
+
+            // WhatsApp शेयर URL बनाएँ
+            const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
+
+            // Open WhatsApp directly in a new tab/window
+            // --- MODIFIED: Open WhatsApp FIRST ---
+            window.open(whatsappURL, '_blank');
+            // --- END MODIFIED ---
+
+
+            // --- NEW POSITION: Stop the lighting animation on the button text AFTER attempting to open WhatsApp ---
+            if (buttonSpan) { // Check if the span e
