@@ -213,7 +213,7 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
-        /* Keyframes for the Button Text Flashing Multi-Color Glow Animation (8 colors) */
+        /* NEW: Keyframes for the Button Text Flashing Multi-Color Glow Animation (8 colors) */
         @keyframes flashingGlowMultiColor {
           0%   { text-shadow: 0 0 8px #FF0000, 0 0 15px #FF0000; } /* Red */
           12.5% { text-shadow: 0 0 8px #FF8C00, 0 0 15px #FF8C00; } /* Orange */
@@ -226,7 +226,7 @@
           100% { text-shadow: 0 0 8px #FF0000, 0 0 15px #FF0000; } /* Cycle back to Red */
         }
 
-        /* Style and Animation for the Text Span inside the button */
+        /* --- NEW/UPDATED: Style and Animation for the Text Span inside the button --- */
         #generateButton span {
             display: inline-block; /* Needed for transforms and animations */
             /* Base text shadow for readability when animation is paused */
@@ -468,8 +468,6 @@
         const nameInput = document.getElementById('nameInput');
         const generateButton = document.getElementById('generateButton');
         const errorMessage = document.getElementById('errorMessage');
-        // Get the span element inside the button once when the script loads
-        const buttonSpan = generateButton.querySelector('span');
 
         // Initially hide the error message
         errorMessage.style.display = 'none';
@@ -514,10 +512,11 @@ Deepawali के पावन पर्व पर,
             const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
 
             // Open WhatsApp directly in a new tab/window
-            // --- MODIFIED: Open WhatsApp FIRST ---
             window.open(whatsappURL, '_blank');
-            // --- END MODIFIED ---
 
+        });
 
-            // --- NEW POSITION: Stop the lighting animation on the button text AFTER attempting to open WhatsApp ---
-            if (buttonSpan) { // Check if the span e
+    </script>
+
+</body>
+</html>
