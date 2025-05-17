@@ -3,492 +3,513 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Diwali</title>
-    <!-- Google Font Import -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-
+    <title>✨ शुभ दीपावली शुभकामनाएँ ✨</title>
+    <!-- Font Awesome CDN for WhatsApp icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            /* --- BACKGROUND IMAGE/PATTERN (TIRANGA) CSS GRADIENT --- */
-            background: linear-gradient(to bottom,
-                #FF9933 0%,    /* Saffron */
-                #FF9933 33.3%,
-                #FFFFFF 33.3%, /* White */
-                #FFFFFF 66.6%,
-                #138808 66.6%, /* Green */
-                #138808 100%
-            );
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-color: #FFFFFF; /* White background */
             color: #333;
             text-align: center;
-            padding: 20px;
-            line-height: 1.6;
+            padding: 0;
             margin: 0;
-            overflow-x: hidden; /* Prevent horizontal scroll */
         }
+
         .container {
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-            position: relative;
-            z-index: 2; /* Ensure container is above flower effect */
+            max-width: 800px; /* Keep wider width to comfortably hold two 160px ads + spacing */
+            margin: 40px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.95); /* सेमी-ट्रांसपेरेंट वाइट बैकग्राउंड */
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* अधिक गहरा शैडो */
+            backdrop-filter: blur(5px); /* हल्का ब्लर प्रभाव अगर बैकग्राउंड इमेज/ग्रेडिएंट दिखे */
+            border: 2px solid #ff9800; /* एक पतला बॉर्डर */
+            text-align: center;
+            perspective: 1000px;
+            overflow: visible;
         }
-
-        /* --- GENERAL ANIMATION KEYFRAMES --- */
-
-        /* Animation for H1 (Indian Flag Color Glow with Black Border) */
-        @keyframes flagGlowH1 {
-            0%, 100% {
-                color: #FF9933; /* Saffron */
-                text-shadow:
-                    /* Black Border Simulation (multiple shadows create thickness) */
-                    -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000,
-                    -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000,
-                    /* Flag Color Glow */
-                    0 0 15px #FF9933, 0 0 30px #FF9933, 0 0 45px #FF9933;
-            }
-            33% {
-                color: #FFFFFF; /* White */
-                 text-shadow:
-                    /* Black Border Simulation */
-                    -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000,
-                    -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000,
-                    /* Flag Color Glow */
-                    0 0 15px #FFFFFF, 0 0 30px #FFFFFF, 0 0 45px #FFFFFF;
-            }
-            66% {
-                color: #138808; /* Green */
-                 text-shadow:
-                    /* Black Border Simulation */
-                    -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000,
-                    -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000,
-                    /* Flag Color Glow */
-                    0 0 15px #138808, 0 0 30px #138808, 0 0 45px #138808;
-            }
-        }
-
-        /* Animation for Shayari Border (Glow like Diyas) */
-        @keyframes diyaGlowBorder {
-            0%, 100% { box-shadow: 0 0 18px #FFD700, 0 0 35px #FFD700, 0 0 50px #FFD700; } /* Gold */
-            20% { box-shadow: 0 0 18px #FFA500, 0 0 35px #FFA500, 0 0 50px #FFA500; } /* Orange */
-            40% { box-shadow: 0 0 18px #FF8C00, 0 0 35px #FF8C00, 0 0 50px #FF8C00; } /* Dark Orange */
-            60% { box-shadow: 0 0 18px #FF4500, 0 0 35px #FF4500, 0 0 50px #FF4500; } /* Orange Red */
-            80% { box-shadow: 0 0 18px #FF6347, 0 0 35px #FF6347, 0 0 50px #FF6347; } /* Tomato */
-        }
-
-
-        /* Keyframes for falling flowers (used by JS) */
-        @keyframes fall {
-            0% { transform: translate3d(0, -10vh, 0) rotate(var(--rotate-start, 0deg)); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translate3d(0, 100vh, 0) rotate(var(--rotate-end, 360deg)); opacity: 0; }
-        }
-         /* Add a subtle side drift animation for flowers (used by JS) */
-         @keyframes drift {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(var(--drift-amount, 10px)); }
-        }
-
-        /* --- END ANIMATION KEYFRAMES --- */
-
-
-        /* H1 Title Style */
         h1 {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            color: #e65100; /* गहरा नारंगी (केसरिया जैसा) - यह टेक्स्ट का फ्रंट कलर है */
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 2.5em;
+            letter-spacing: 4px;
+            animation: pulsateTitle 2s infinite alternate ease-in-out;
             display: inline-block;
+            padding: 0 10px;
+
+            /* Adjusted Text Shadow for Lined 3D Indian Flag Colors */
+            text-shadow:
+                /* Saffron Layers */
+                1px 1px 0 #ff9800,
+                -1px 1px 0 #ff9800,
+                2px 2px 0 #f57c00,
+                -2px 2px 0 #f57c00,
+                /* White Layers */
+                3px 3px 0 #FFFFFF,
+                -3px 3px 0 #FFFFFF,
+                4px 4px 0 #FFFFFF,
+                -4px 4px 0 #FFFFFF,
+                /* Green Layers */
+                5px 5px 0 #138808,
+                -5px 5px 0 #138808,
+                6px 6px 1px #138808,
+                -6px 6px 1px #138808,
+                /* Final Depth Shadow */
+                7px 7px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Keyframes for the Pulsating Animation */
+        @keyframes pulsateTitle {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+
+        /* Style for the GIF image */
+        #diwaliGif {
+            display: block;
+            margin: 20px auto 30px auto;
             max-width: 100%;
-            box-sizing: border-box;
-
-            color: #FF9933;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 3.5em;
-            font-weight: normal;
-            letter-spacing: 2px;
-            word-spacing: 0px;
-            text-transform: uppercase;
-
-            animation: flagGlowH1 3s infinite ease-in-out;
-        }
-
-        /* Ad Banner Containers */
-        .ad-banner {
-            width: 100%; /* Allows banner to take full width of container */
-            margin: 20px 0; /* Add margin above and below */
-            display: flex; /* Use flexbox to center content */
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically (if ad has variable height) */
-            font-size: 0.9em; /* Not strictly needed for ad script but good practice */
-            color: #666; /* Not strictly needed for ad script */
-            overflow: hidden; /* Ensure ad doesn't overflow its container */
-            z-index: 3;
-            position: relative;
-            padding: 5px 0; /* Add some vertical padding if needed */
-        }
-         .ad-banner iframe {
-            display: block; /* Ensure iframe doesn't have extra space below it */
-        }
-
-
-        /* GIF Image Container */
-        .gif-container {
-             margin: 20px auto;
-             width: fit-content;
-             border-radius: 8px;
-             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-             display: block;
-             overflow: hidden;
-             z-index: 3;
-             position: relative;
-             max-width: 100%;
-        }
-        .gif-container img {
-            display: block;
-            max-width: 100%; /* Ensure image is responsive */
             height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid #ffb74d; /* GIF के चारों ओर एक बॉर्डर */
+        }
+
+        /* Style for the Shayari */
+        #diwaliShayari {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            font-style: italic;
+            color: #4e342e; /* Keep text color dark brown */
+            line-height: 1.8;
+            text-align: center;
+            max-width: 100%;
+            font-size: 0.98em;
+            text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
+            padding: 0 15px;
+            transform-style: preserve-3d;
+            animation: shayariDynamic3D 8s infinite ease-in-out alternate;
+        }
+
+         /* Keyframes for the Dynamic 3D Shayari Animation */
+        @keyframes shayariDynamic3D {
+          0% {
+            transform: rotateY(0deg) rotateX(0deg) translateZ(0);
+            opacity: 1;
+          }
+          25% {
+            transform: rotateY(7deg) rotateX(3deg) translateZ(20px);
+            opacity: 0.98;
+          }
+          50% {
+            transform: rotateY(-7deg) rotateX(-3deg) translateZ(20px);
+            opacity: 0.98;
+          }
+           75% {
+            transform: rotateY(5deg) rotateX(-2deg) translateZ(15px);
+            opacity: 0.99;
+          }
+          100% {
+            transform: rotateY(0deg) rotateX(0deg) translateZ(0);
+            opacity: 1;
+          }
         }
 
 
-        /* Name Input and Share Button */
-        .share-section {
-            margin-top: 30px;
-            padding-top: 25px;
-            border-top: 1px solid #ddd;
-            z-index: 3;
-            position: relative;
+        .input-group {
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            width: 100%;
+            padding: 0 15px;
+            box-sizing: border-box;
         }
-        .share-section label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #555;
-            font-size: 1.1em;
-        }
-        .share-section input[type="text"] {
-            padding: 12px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: calc(100% - 24px);
-            max-width: 350px;
+        input[type="text"] {
+            padding: 14px;
+            width: 100%;
+            border: 2px solid #ffab40;
+            border-radius: 8px;
             font-size: 1.1em;
             box-sizing: border-box;
             text-align: center;
-            ::placeholder { color: #999; opacity: 1; }
-            :-ms-input-placeholder { color: #999; }
-            ::-ms-input-placeholder { color: #999; }
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
         }
-
-        /* Style for the dynamically displayed name message */
-        #display-name-message {
-            margin-top: 5px;
-            margin-bottom: 20px;
-            min-height: 1.4em;
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #008000;
-            text-shadow: 0 0 4px rgba(0,128,0,0.4);
+        input[type="text"]:focus {
+            border-color: #e65100;
+            box-shadow: 0 0 8px rgba(255, 152, 0, 0.5);
         }
 
 
-        .share-section button {
-            background-color: #25D366; /* WhatsApp Green */
-            color: white;
-            padding: 14px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+        /* Style for Error Message */
+        #errorMessage {
+            color: #d32f2f;
+            margin-top: 15px;
             margin-bottom: 15px;
+            display: none;
+            font-weight: bold;
         }
-        .share-section button:hover {
-            background-color: #1DA851;
-            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+
+        /* Wrapper div for centering the button */
+        .button-wrapper {
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 30px;
+            /* Keep floating animation on the wrapper */
+             animation: floatButton 4s infinite ease-in-out; /* Apply floating animation here */
         }
-        .share-section button:active {
-             transform: translateY(2px);
-             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+        /* Stylish WhatsApp-like button styling */
+        #generateButton {
+            padding: 15px 40px;
+            background: linear-gradient(to right, #25D366, #128C7E);
+            color: #fff; /* Base text color (will be mostly hidden by glow/shadow) */
+            border: none;
+            border-radius: 35px;
+            font-size: 1.4em;
+            cursor: pointer;
+            transition: all 0.3s ease; /* Keep transition for hover/active effects */
+            font-weight: bold;
+            letter-spacing: 0.5px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: top;
+            transform: none; /* Ensure transition starts from base state */
+
+            /* Remove text shadow from button itself */
+            text-shadow: none;
+
+            /* Multi-Layered Box Shadow for 3D Button Effect - MODIFIED for thicker shadow */
+            box-shadow:
+                /* Thicker 3D Depth (dark layers) */
+                1px 1px 0 #333, 2px 2px 0 #333, 3px 3px 0 #333, 4px 4px 0 #333,
+                5px 5px 0 #333, 6px 6px 0 #333, 7px 7px 0 #333, 8px 8px 0 #333, /* Added more layers for thickness */
+                /* Stronger Cast Shadow */
+                10px 10px 15px rgba(0,0,0,0.8), /* Increased offset and blur */
+                /* Green Glow */
+                0 0 25px rgba(37, 211, 102, 0.8), /* Slightly stronger glow */
+                /* Standard Bottom Shadow */
+                0 10px 20px rgba(0, 0, 0, 0.3); /* Slightly stronger bottom shadow */
+        }
+
+        /* Style for the icon inside the button */
+        #generateButton i {
+            margin-right: 10px;
+            font-size: 1.2em;
+            /* Add a subtle shadow to the icon for depth */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Keyframes for the Button Text Flashing Multi-Color Glow Animation (8 colors) */
+        @keyframes flashingGlowMultiColor {
+          0%   { text-shadow: 0 0 8px #FF0000, 0 0 15px #FF0000; } /* Red */
+          12.5% { text-shadow: 0 0 8px #FF8C00, 0 0 15px #FF8C00; } /* Orange */
+          25%  { text-shadow: 0 0 8px #FFFF00, 0 0 15px #FFFF00; } /* Yellow */
+          37.5% { text-shadow: 0 0 8px #00FF00, 0 0 15px #00FF00; } /* Green */
+          50%  { text-shadow: 0 0 8px #0000FF, 0 0 15px #0000FF; } /* Blue */
+          62.5% { text-shadow: 0 0 8px #4B0082, 0 0 15px #4B0082; } /* Indigo */
+          75%  { text-shadow: 0 0 8px #9400D3, 0 0 15px #9400D3; } /* Violet */
+          87.5% { text-shadow: 0 0 8px #FFFFFF, 0 0 15px #FFFFFF; } /* White */
+          100% { text-shadow: 0 0 8px #FF0000, 0 0 15px #FF0000; } /* Cycle back to Red */
+        }
+
+        /* Style and Animation for the Text Span inside the button */
+        #generateButton span {
+            display: inline-block; /* Needed for transforms and animations */
+            /* Base text shadow for readability when animation is paused */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3); /* Keep a subtle shadow */
+            /* Apply the Multi-Color Flashing Animation */
+            animation: flashingGlowMultiColor 8s infinite step-end; /* Apply the new 8-color animation */
+        }
+
+        /* Keyframes for the Button Floating Animation - KEPT */
+        @keyframes floatButton {
+          0% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+          100% {
+            transform: translateY(0);
+          }
         }
 
 
-        /* Animated paragraph Style (Shayari) */
-        .animated-text {
-             margin: 25px auto;
-             padding: 18px;
-             border-radius: 10px;
-             font-family: 'Georgia', serif;
-             font-size: 1.4em;
-             font-weight: bold;
-             background-color: rgba(255, 255, 255, 0.9);
-             color: #555; /* Static text color */
-             animation: diyaGlowBorder 1.2s infinite ease-in-out; /* ONLY Border Glow */
-             z-index: 3;
-             position: relative;
-             line-height: 1.8;
-             text-shadow: 0 0 2px rgba(0,0,0,0.1); /* Subtle text shadow */
+        #generateButton:hover {
+            background: linear-gradient(to right, #128C7E, #25D366);
+            /* Keep the translateY/scale transform for hover effect */
+            transform: translateY(-3px) scale(1.03);
+            /* Box Shadow for Hover State - MODIFIED */
+             box-shadow:
+                /* Thicker 3D Depth (dark layers) - Keep consistent with base but slightly less pronounced */
+                1px 1px 0 #222, 2px 2px 0 #222, 3px 3px 0 #222, 4px 4px 0 #222,
+                5px 5px 0 #222, 6px 6px 0 #222, 7px 7px 0 #222, 8px 8px 0 #222,
+                /* Even stronger Cast Shadow */
+                15px 15px 20px rgba(0,0,0,0.9), /* Even stronger cast shadow on hover */
+                /* More intense Green Glow */
+                0 0 40px rgba(37, 211, 102, 1), /* More intense glow */
+                /* Standard Bottom Shadow */
+                0 12px 25px rgba(0, 0, 0, 0.4); /* Slightly stronger bottom shadow */
+            /* Remove text shadow from button hover as span handles it */
+            text-shadow: none;
         }
 
-        /* Footer or Closing Remark */
-        .footer-text {
-            margin-top: 30px;
-            font-size: 1em;
-            color: #555;
-            z-index: 3;
-            position: relative;
+        /* Keep hover effect for the text span on button hover - use a static Indian Flag glow */
+         #generateButton:hover span {
+            /* Make glow slightly more intense on hover */
+            text-shadow: 0 0 10px #FF9933, 0 0 20px #FFFFFF, 0 0 30px #138808; /* Enhanced Indian Flag Glow */
+            /* Pause the flashing animation on hover for better readability/interaction */
+            animation: none;
+         }
+
+
+         #generateButton:active {
+            background: #128C7E;
+             /* Keep the translateY transform for active effect */
+            transform: translateY(1px);
+            /* Box Shadow for Active State - MODIFIED */
+             box-shadow:
+                /* Reduced 3D Depth */
+                1px 1px 0 #111, 2px 2px 0 #111,
+                /* Reduced Cast Shadow */
+                3px 3px 5px rgba(0,0,0,0.4),
+                /* Reduced Green Glow */
+                0 0 15px rgba(37, 211, 102, 0.6),
+                /* Reduced Standard Bottom Shadow */
+                0 5px 10px rgba(0, 0, 0, 0.3);
+            /* Remove text shadow from button active as span handles it */
+             text-shadow: none;
         }
 
-        /* --- FLOWER SHOWER EFFECT (JavaScript controlled) --- */
-        .flower-shower {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* Keep active effect for the text span on button active - use a static Indian Flag glow */
+         #generateButton:active span {
+            /* Make glow less intense on active */
+            text-shadow: 0 0 5px #FF9933, 0 0 10px #FFFFFF, 0 0 15px #138808; /* Less intense Indian Flag Glow */
+             animation: none; /* Pause animation on active */
+         }
+
+
+         /* Style for the individual Ad Container (160x600) */
+        .ad-container {
+            text-align: center;
+            min-width: 0;
+            max-width: 160px; /* Set max-width to ad width */
+            width: 100%; /* Be responsive */
+            overflow: hidden; /* Hide anything outside */
+            display: flex; /* Use flexbox to center content inside the ad slot */
+            justify-content: center; /* Horizontally center ad iframe */
+            align-items: center; /* Vertically center ad iframe */
+            box-sizing: border-box;
+            height: 600px; /* Set height to ad height */
+            /* Margin is handled by the parent flex container's gap */
+        }
+
+        /* Container for grouping two side-by-side ads */
+        .ads-below-button {
+            margin: 25px auto; /* Add vertical margin and center the group */
+            display: flex; /* Arrange children side-by-side */
+            justify-content: center; /* Center the flex items horizontally within the container */
+            align-items: flex-start; /* Align items at the top */
+            gap: 20px; /* Add space between the two ad containers */
+            flex-wrap: nowrap; /* Force items to stay on one line */
+            overflow-x: auto; /* Add horizontal scroll if content exceeds screen width */
+            padding-bottom: 10px; /* Add some padding in case of horizontal scrollbar */
+        }
+
+
+        /* Style for the smaller Ad Banner (320x50) - Remains */
+        .ad-banner {
+            margin: 25px auto;
+            text-align: center;
+            min-width: 0;
+            max-width: 380px;
             width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1; /* Below container but above background */
-            overflow: hidden; /* Hide flowers outside the viewport */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            height: 50px;
         }
 
-        .flower-shower span {
-            display: block;
-            position: absolute;
-            border-radius: 50%; /* Make them circular like petals/dots */
-            opacity: 0;
-            animation: fall linear infinite, drift linear infinite alternate;
-        }
-        /* --- END FLOWER SHOWER EFFECT --- */
 
+        .footer {
+            margin-top: 40px;
+            font-size: 1em;
+            color: #5d4037;
+            width: 100%;
+            text-align: center;
+            padding-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- --- FLOWER SHOWER CONTAINER (JavaScript will add spans here) --- -->
-    <div class="flower-shower">
-        <!-- JavaScript will dynamically generate and add <span> elements here -->
-    </div>
-    <!-- --- END FLOWER SHOWER CONTAINER --- -->
-
-
     <div class="container">
 
-        <!-- H1 Title -->
-        <h1>Happy Diwali</h1>
+        <h1>✨ शुभ दीपावली शुभकामनाएँ ✨</h1>
 
-         <!-- --- AD BANNER BELOW TITLE (EXISTING POSITION) --- -->
-        <div class="ad-banner" id="ad-banner-below-title">
-            <!-- आपका Ad unit code यहाँ है -->
+        <!-- NEW Ad Banner (320x50) - Above GIF (Remains) -->
+        <div class="ad-banner">
             <script type="text/javascript">
                 atOptions = {
-                    'key' : 'd46068b5ea1c6995eb30b81badeee686',
+                    'key' : '0fe5eb641aeca672b3f66427b43b2889',
                     'format' : 'iframe',
-                    'height' : 60,
-                    'width' : 468,
+                    'height' : 50,
+                    'width' : 320,
                     'params' : {}
                 };
             </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/d46068b5ea1c6995eb30b81badeee686/invoke.js"></script>
-             <!-- Ad unit code यहाँ खत्म होता है -->
+            <script type="text/javascript" src="//www.highperformanceformat.com/0fe5eb641aeca672b3f66427b43b2889/invoke.js"></script>
         </div>
-        <!-- --- END AD BANNER BELOW TITLE --- -->
+        <!-- End NEW Ad Banner -->
 
 
-        <div class="gif-container">
-            <!--
-                **!!! यहाँ आपको अपनी Happy Diwali GIF का URL डालना है !!!**
-                ... (Instructions remain the same) ...
-            -->
-            <img src="PUT_YOUR_DIWALI_GIF_URL_HERE" alt="Diwali Greeting GIF" id="diwali-gif">
-             <!-- उपरोक्त src="..." को अपनी GIF URL से बदलें -->
-        </div>
+        <!-- GIF Image goes here -->
+        <img id="diwaliGif" src="https://cdn.pixabay.com/animation/2023/10/27/13/29/13-29-36-105_512.gif" alt="Happy Diwali GIF">
 
-        <!-- --- AD BANNER ABOVE SHAYARI (EXISTING POSITION) --- -->
-        <div class="ad-banner" id="ad-banner-above-shayari">
-            <!-- आपका Ad unit code यहाँ है -->
+         <!-- NEW Ad Banner (320x50) - Below GIF (Remains) -->
+        <div class="ad-banner">
             <script type="text/javascript">
                 atOptions = {
-                    'key' : 'd46068b5ea1c6995eb30b81badeee686',
+                    'key' : '0fe5eb641aeca672b3f66427b43b2889',
                     'format' : 'iframe',
-                    'height' : 60,
-                    'width' : 468,
+                    'height' : 50,
+                    'width' : 320,
                     'params' : {}
                 };
             </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/d46068b5ea1c6995eb30b81badeee686/invoke.js"></script>
-             <!-- Ad unit code यहाँ खत्म होता है -->
+            <script type="text/javascript" src="//www.highperformanceformat.com/0fe5eb641aeca672b3f66427b43b2889/invoke.js"></script>
         </div>
-        <!-- --- END AD BANNER ABOVE SHAYARI --- -->
+        <!-- End NEW Ad Banner -->
 
-        <!-- Animated paragraph (Shayari) -->
-        <p class="animated-text">
-            यह दीपावली आपके जीवन में सुख, समृद्धि और खुशियाँ लेकर आए।
-            दीपक की रौशनी से आपका आँगन जगमगाए।
+
+        <!-- Added Shayari here, below the GIF -->
+        <p id="diwaliShayari">
+            दीपों का पर्व है, खुशियों की बहार,<br>
+            राम जी पधारे, जगमग संसार।<br>
+            गणेश जी दें बुद्धि, माँ लक्ष्मी दें धन-धान्य अपार,<br>
+            अज्ञान मिटे, ज्ञान का हो संचार।<br>
+            आपके जीवन में आए सुख-शांति हज़ार।
         </p>
 
-        <!-- --- AD BANNER BELOW SHAYARI (EXISTING POSITION) --- -->
-        <div class="ad-banner" id="ad-banner-below-shayari">
-            <!-- आपका Ad unit code यहाँ है -->
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'd46068b5ea1c6995eb30b81badeee686',
-                    'format' : 'iframe',
-                    'height' : 60,
-                    'width' : 468,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/d46068b5ea1c6995eb30b81badeee686/invoke.js"></script>
-             <!-- Ad unit code यहाँ खत्म होता है -->
+        <div class="input-group">
+            <input type="text" id="nameInput" placeholder="यहां अपना नाम लिखें">
         </div>
-        <!-- --- END AD BANNER BELOW SHAYARI --- -->
 
+        <!-- Error Message -->
+        <p id="errorMessage"> कृपया शुभकामना संदेश भेजने के लिए अपना नाम अवश्य लिखें।</p>
 
-        <!-- Share Section (WhatsApp Button & Name Input) -->
-        <div class="share-section">
-            <label for="sender-name">अपना शुभ नाम लिखें:</label>
-            <input type="text" id="sender-name" placeholder="आपका नाम">
-            <!-- यह पैराग्राफ टाइप किया गया नाम दिखाएगा -->
-            <p id="display-name-message"></p>
-            <button id="share-button">WhatsApp पर शेयर करें</button>
+        <!-- Wrapper div to center the button -->
+        <div class="button-wrapper">
+            <!-- Main Button - Styled - Share button -->
+            <button id="generateButton"><i class="fab fa-whatsapp"></i> <span>Share on WhatsApp</span></button>
         </div>
-        <!-- END Share Section -->
 
-        <!-- --- AD BANNER BELOW SHARE SECTION (MOVED FROM ABOVE TITLE) --- -->
-        <div class="ad-banner" id="ad-banner-below-share-section"> <!-- ID changed -->
-             <!-- आपका Ad unit code यहाँ है -->
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'd46068b5ea1c6995eb30b81badeee686',
-                    'format' : 'iframe',
-                    'height' : 60,
-                    'width' : 468,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/d46068b5ea1c6995eb30b81badeee686/invoke.js"></script>
-             <!-- Ad unit code यहाँ खत्म होता है -->
+
+        <!-- New container for two side-by-side Ad Banners (160x600) -->
+        <div class="ads-below-button">
+            <!-- Ad Banner Container (160x600) - Left -->
+            <div class="ad-container">
+                <!-- Script for the first 160x600 ad -->
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : 'c5e32baf8fff30979a8391e2da599bbb',
+                        'format' : 'iframe',
+                        'height' : 600,
+                        'width' : 160,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/c5e32baf8fff30979a8391e2da599bbb/invoke.js"></script>
+            </div>
+            <!-- End Ad Banner (Left) -->
+
+            <!-- Ad Banner Container (160x600) - Right -->
+            <div class="ad-container">
+                 <!-- Script for the second 160x600 ad -->
+                 <script type="text/javascript">
+                    atOptions = {
+                        'key' : 'c5e32baf8fff30979a8391e2da599bbb',
+                        'format' : 'iframe',
+                        'height' : 600,
+                        'width' : 160,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/c5e32baf8fff30979a8391e2da599bbb/invoke.js"></script>
+            </div>
+            <!-- End Ad Banner (Right) -->
         </div>
-        <!-- --- END AD BANNER BELOW SHARE SECTION --- -->
+        <!-- End ads-below-button container -->
 
 
-        <p class="footer-text">
-            शुभ दीपावली!
-        </p>
+    </div> <!-- Closes main container -->
+
+    <div class="footer">
+        आपको और आपके परिवार को दीपावली की हार्दिक शुभकामनाएँ! ✨
     </div>
 
     <script>
-        // JavaScript to handle the WhatsApp sharing and name display
-        const shareButton = document.getElementById('share-button');
-        const senderNameInput = document.getElementById('sender-name');
-        const displayNameMessage = document.getElementById('display-name-message'); // Get the display paragraph
+        const nameInput = document.getElementById('nameInput');
+        const generateButton = document.getElementById('generateButton');
+        const errorMessage = document.getElementById('errorMessage');
+        // Get the span element inside the button once when the script loads
+        const buttonSpan = generateButton.querySelector('span');
 
-        // Listen for input in the name field to update the display message
-        senderNameInput.addEventListener('input', () => {
-            const name = senderNameInput.value.trim();
-            if (name) {
-                displayNameMessage.textContent = `${name} की तरफ से शुभकामनाएँ!`;
+        // Initially hide the error message
+        errorMessage.style.display = 'none';
+
+
+        // Add the event listener to the main button
+        generateButton.addEventListener('click', () => {
+            const senderName = nameInput.value.trim(); // नाम इनपुट फ़ील्ड से वैल्यू लें और अतिरिक्त स्पेस हटा दें
+
+            if (senderName === '') {
+                // अगर नाम खाली है, तो एरर मैसेज दिखाएं
+                errorMessage.style.display = 'block';
+                return; // आगे की प्रक्रिया रोक दें
             } else {
-                displayNameMessage.textContent = ''; // Clear if input is empty
-            }
-        });
-
-        // WhatsApp Share Button Logic
-        shareButton.addEventListener('click', () => {
-            const senderName = senderNameInput.value.trim();
-
-            let messageText = "Happy Diwali!\n\n";
-            messageText += "आपको और आपके परिवार को दीपावली की हार्दिक शुभकामनाएँ!\n\n";
-            messageText += "यह दीपाavali आपके जीवन में सुख, समृद्धि और खुशियाँ लेकर आए। दीपक की रौशनी से आपका आँगन जगमगाए।\n\n"; /* The animated paragraph text */
-
-            // Add the sender's name message format
-            if (senderName) {
-                messageText += `${senderName} की तरफ से शुभकामनाएँ!`; // Use the typed name
-            } else {
-                messageText += `शुभकामनाएँ!`; // Default message if name is empty
+                // अगर नाम लिखा है, तो एरर मैसेज छिपा दें
+                errorMessage.style.display = 'none';
             }
 
-            const encodedMessage = encodeURIComponent(messageText);
-            const pageUrl = window.location.href;
-            // Appending the page URL for the recipient to open it
-            const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}\n\n${encodeURIComponent("यहाँ से शुभकामनाएँ भेजें: " + pageUrl)}`;
-
-            window.open(whatsappUrl, '_blank');
-        });
-
-        // --- JavaScript for Flower Shower Effect ---
-        const flowerShower = document.querySelector('.flower-shower');
-        const colors = [
-            '#FFC0CB', // Pink (गुलाब)
-            '#FF69B4', // Hot Pink (गहरा गुलाबी)
-            '#FFFF00', // Yellow (गेंदा)
-            '#FFA500', // Orange (नारंगी)
-            '#FFFFFF', // White (चमेली)
-            '#EE82EE', // Violet (बैंगनी)
-            '#FF0000', // Red (लाल फूल)
-            '#FFD700', // Gold (सुनहरा) - festive color
-            '#90EE90', // Light Green (हल्की पत्ती) - optional
-            '#ADD8E6'  // Light Blue (हल्का नीला) - for variety
-        ];
-
-        const numFlowers = 100; // Adjust this number for more or fewer flowers
-
-        function createFlower() {
-            const flower = document.createElement('span');
-            const size = Math.random() * 10 + 8; // Random size between 8px and 18px
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            const duration = Math.random() * 9 + 6; // Random duration between 6s and 15s
-            const delay = Math.random() * 12; // Random delay between 0s and 12s
-            const drift = Math.random() * 50 - 25; // Random horizontal drift between -25px and +25px
-            const rotateStart = Math.random() * 360; // Random rotation start
-             const rotateEnd = Math.random() * 720 - 360 + rotateStart; // Random rotation end (relative to start)
-
-            flower.style.width = size + 'px';
-            flower.style.height = size + 'px';
-            flower.style.backgroundColor = color;
-            flower.style.left = Math.random() * 100 + '%'; // Random start horizontal position
-            flower.style.animationDuration = duration + 's';
-            flower.style.animationDelay = delay + 's';
-            flower.style.setProperty('--drift-amount', drift + 'px'); // Set custom property for drift
-            flower.style.setProperty('--rotate-start', rotateStart + 'deg'); // Set custom property for rotation start
-            flower.style.setProperty('--rotate-end', rotateEnd + 'deg'); // Set custom property for rotation end
+            // --- NEW: Stop the lighting animation on the button text after clicking ---
+            if (buttonSpan) { // Check if the span element exists
+                 // Set the animation style to 'none' to stop the animation
+                 buttonSpan.style.animation = 'none';
+                 // Optionally, set a static text-shadow if you want it to have a fixed look after stopping
+                 // For example, revert to a subtle shadow or a static glow
+                 buttonSpan.style.textShadow = '1px 1px 2px rgba(0,0,0,0.3)'; // Revert to the base subtle shadow
+                 // Or use a static glow: buttonSpan.style.textShadow = '0 0 10px #FFFFFF';
+            }
+            // --- END NEW ---
 
 
-             // Optional: Remove flower element after animation ends to prevent DOM clutter
-             // This also allows new flowers to be created if you uncomment the interval
-             flower.addEventListener('animationend', () => {
-                 flower.remove();
-                 // To create a continuous shower, uncomment the next line
-                 // createFlower();
-             });
+            // धार्मिक अंदाज़ में शुभकामना संदेश
+            const message =
+`*${senderName}* की तरफ से,
 
-            flowerShower.appendChild(flower);
-        }
+Deepawali के पावन पर्व पर,
+मेरी तरफ से आपको और आपके पूरे परिवार को
+असीम शुभकामनाएँ! 🙏
 
-        // Create the initial set of flowers
-        for (let i = 0; i < numFlowers; i++) {
-            createFlower();
-        }
+माँ लक्ष्मी और भगवान गणेश की कृपा से
+आपके जीवन में सुख, समृद्धि, स्वास्थ्य और
+अपरंपार खुशियाँ आएं।
 
-        // To create a continuous shower, uncomment the next line
-        // setInterval(createFlower, 300); // Create one new flower every 300ms (adjust time as needed)
-
-
-        // --- End JavaScript for Flower Shower Effect ---
-
-    </script>
-
-</body>
-</html>
+यह दीवाली आपक
